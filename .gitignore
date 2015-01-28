@@ -1,0 +1,59 @@
+# -----------------
+# Eclipse
+# -----------------
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+local.properties
+.classpath
+.settings
+.loadpath
+
+# No idea...
+/src/main.resources.rebal.xml
+.externalToolBuilders/
+
+# Eclipse launch config
+.launch
+
+# CDT specific
+.cproject
+
+# PDT specific
+.buildpath
+
+# -----------------
+# Package Files
+# -----------------
+*.jar
+*.war
+*.ear
+*.db
+
+# Object and Archive files
+*.[oa]
+
+# -----------------
+# Windows
+# -----------------
+Thumbs.db
+Desktop.ini
+
+# -----------------
+# OSX
+# -----------------
+.DS_Store
+.svn
+
+._*
+.Spotlight-V100
+.Trashes
