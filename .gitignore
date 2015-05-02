@@ -7,11 +7,13 @@
 bin/**
 tmp/**
 tmp/**/*
+**/bin/**
 
 *.tmp
 *.bak
 *.swp
 *~.nib
+*.log
 
 local.properties
 .classpath
@@ -30,6 +32,11 @@ local.properties
 
 # PDT specific
 .buildpath
+
+# -----------------
+# Java
+# -----------------
+*.class
 
 # -----------------
 # Package Files
@@ -57,3 +64,4 @@ Desktop.ini
 ._*
 .Spotlight-V100
 .Trashes
+/target/
