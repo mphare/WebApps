@@ -1,18 +1,41 @@
 package com.vogel.rest;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/hello")
 public class Hello
 {
+  /*
+   * http://localhost:8080/VodelREST/rest/hello
+   */
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   public String sayPlainTextHello()
   {
     return "Plain Text Hello from Jersey";
+  }
+
+  /*
+   * http://localhost:8080/VodelREST/rest/hello/<c>
+   */
+  @Path("{c}")
+  @GET
+  @Produces(MediaType.TEXT_PLAIN)
+  public String sayPlainTextHelloWithC(@PathParam("c") Double c)
+  {
+    return "Plain Text Hello from Jersey with C";
+  }
+
+  @POST
+  @Produces(MediaType.TEXT_PLAIN)
+  public String sayPlainTextHelloPost()
+  {
+    return "Plain Text Hello from Jersey (w/Post)";
   }
 
   @GET
@@ -27,6 +50,6 @@ public class Hello
   public String sayHtmlHello()
   {
     return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "HTML Hello from Jersey"
-        + "</body></h1>" + "</html> ";
+        + "</h1></body>" + "</html> ";
   }
 }
