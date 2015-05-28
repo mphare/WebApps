@@ -1,5 +1,8 @@
 package com.vogel.rest;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -8,11 +11,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.junit.Test;
+
 @Path("/hello")
 public class Hello
 {
+
   /*
-   * http://localhost:8080/VodelREST/rest/hello
+   * http://localhost:8080/VogelREST/rest/hello
    */
   @GET
   @Produces(MediaType.TEXT_PLAIN)
@@ -61,7 +70,45 @@ public class Hello
   @Produces(MediaType.TEXT_HTML)
   public String sayHtmlHello()
   {
-    return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "HTML Hello from Jersey"
+    long idx = getMyIndex();
+    return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "HTML Hello from Jersey (index)" + idx
         + "</h1></body>" + "</html> ";
+  }
+
+  @Test
+  public void testThis()
+  {
+
+    long idx = getMyIndex();
+    System.out.println("This Test: " + idx);
+
+  }
+
+  public long getMyIndex()
+  {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = null;
+    long retValue = -1;
+    try
+    {
+      transaction = session.beginTransaction();
+      List indexes = session.createQuery("from DBase").list();
+      for (Iterator iterator = indexes.iterator(); iterator.hasNext();)
+      {
+        DBase dbase = (DBase) iterator.next();
+        retValue = dbase.getIndex();
+      }
+      transaction.commit();
+
+    } catch (HibernateException e)
+    {
+      transaction.rollback();
+      e.printStackTrace();
+
+    } finally
+    {
+      session.close();
+    }
+    return retValue;
   }
 }
