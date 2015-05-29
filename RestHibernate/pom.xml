@@ -25,16 +25,19 @@
       </plugin>
     </plugins>
   </build>
+  <properties>
+  <jersey-version>1.19</jersey-version>
+  </properties>
   <dependencies>
   	<dependency>
   		<groupId>com.sun.jersey</groupId>
   		<artifactId>jersey-bundle</artifactId>
-  		<version>1.19</version>
+  		<version>${jersey-version}</version>
   	</dependency>
   	<dependency>
   		<groupId>com.sun.jersey</groupId>
   		<artifactId>jersey-core</artifactId>
-  		<version>1.19</version>
+  		<version>${jersey-version}</version>
   	</dependency>
   </dependencies>
 </project>

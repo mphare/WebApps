@@ -66,11 +66,16 @@ public class Hello
     return "<?xml version=\"1.0\"?>" + "<hello> XML Hello from Jersey" + "</hello>";
   }
 
+  /*
+   * ======================================================= Use This One!
+   * -------------------------------------------------------
+   */
   @GET
   @Produces(MediaType.TEXT_HTML)
   public String sayHtmlHello()
   {
-    long idx = getMyIndex();
+    // long idx = getMyIndex();
+    long idx = 5L;
     return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "HTML Hello from Jersey (index)" + idx
         + "</h1></body>" + "</html> ";
   }

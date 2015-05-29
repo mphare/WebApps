@@ -35,17 +35,17 @@
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-bundle</artifactId>
-			<version>1.19</version>
+			<version>${jersey-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-core</artifactId>
-			<version>1.19</version>
+			<version>${jersey-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
-			<version>1.19</version>
+			<version>${jersey-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
@@ -79,4 +79,7 @@
 			<version>3.5.6-Final</version>
 		</dependency>
 	</dependencies>
+	<properties>
+		<jersey-version>1.19</jersey-version>
+	</properties>
 </project>
