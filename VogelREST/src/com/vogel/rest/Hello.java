@@ -20,6 +20,13 @@ import org.junit.Test;
 public class Hello
 {
 
+	@Path("arg")
+	@POST
+	@Produces(MediaType.TEXT_PLAIN)
+	public String saveNameType(@QueryParam("name") String name) {
+		Long idx = saveNameType(name, "New Type");
+		return "Added new Name: "+name+" index: "+idx;
+	}
   /*
    * http://localhost:8080/VogelREST/rest/hello
    */
@@ -114,5 +121,37 @@ public class Hello
       session.close();
     }
     return retValue;
+  }
+  
+  /**
+   * === C ===
+   * 
+   * @param courseName
+   * @return
+   */
+  public Long saveNameType(String name, String type)
+  {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = null;
+    Long index = null;
+    try
+    {
+      transaction = session.beginTransaction();
+      DBase dBase = new DBase();
+      dBase.setName(name);
+      dBase.setType(type);
+      
+      index = (Long) session.save(dBase);
+      transaction.commit();
+
+    } catch (HibernateException e)
+    {
+      transaction.rollback();
+      e.printStackTrace();
+    } finally
+    {
+      session.close();
+    }
+    return index;
   }
 }
