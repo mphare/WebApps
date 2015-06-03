@@ -74,9 +74,8 @@ public class Hello
   @Produces(MediaType.TEXT_HTML)
   public String sayHtmlHello()
   {
-    // long idx = getMyIndex();
-    long idx = 5L;
-    return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "HTML Hello from Jersey (index)" + idx
+	    long idx = getMyIndex();
+    return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "HTML Hello from Jersey (index: " + idx + ")"
         + "</h1></body>" + "</html> ";
   }
 
