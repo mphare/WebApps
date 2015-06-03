@@ -3,6 +3,7 @@ package com.vogel.rest;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -20,13 +21,26 @@ import org.junit.Test;
 public class Hello
 {
 
-	@Path("arg")
-	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	public String saveNameType(@QueryParam("name") String name) {
-		Long idx = saveNameType(name, "New Type");
-		return "Added new Name: "+name+" index: "+idx;
-	}
+  @Path("arg")
+  @DELETE
+  @Produces(MediaType.TEXT_PLAIN)
+  public String deleteIndexRS(@QueryParam("idx") String idx)
+  {
+    Long index = Long.parseLong(idx);
+    deleteIndex(index);
+    return "Deleted Index: " + index;
+  }
+
+  @Path("arg")
+  @POST
+  @Produces(MediaType.TEXT_PLAIN)
+  public String saveNameTypeRS(@QueryParam("name") String name, @QueryParam("type") String type)
+  {
+
+    Long idx = saveNameType(name, type);
+    return "Added new Name: " + name + " Type: " + type + " index: " + idx;
+  }
+
   /*
    * http://localhost:8080/VogelREST/rest/hello
    */
@@ -81,9 +95,9 @@ public class Hello
   @Produces(MediaType.TEXT_HTML)
   public String sayHtmlHello()
   {
-	    long idx = getMyIndex();
-    return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "HTML Hello from Jersey (index: " + idx + ")"
-        + "</h1></body>" + "</html> ";
+    long idx = getMyIndex();
+    return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "HTML Hello from Jersey (index: " + idx
+        + ")" + "</h1></body>" + "</html> ";
   }
 
   @Test
@@ -122,7 +136,7 @@ public class Hello
     }
     return retValue;
   }
-  
+
   /**
    * === C ===
    * 
@@ -140,7 +154,7 @@ public class Hello
       DBase dBase = new DBase();
       dBase.setName(name);
       dBase.setType(type);
-      
+
       index = (Long) session.save(dBase);
       transaction.commit();
 
@@ -153,5 +167,32 @@ public class Hello
       session.close();
     }
     return index;
+  }
+
+  /**
+   * === D ===
+   * 
+   * @param courseId
+   */
+  public void deleteIndex(Long index)
+  {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = null;
+    try
+    {
+      transaction = session.beginTransaction();
+      DBase dBase = (DBase) session.get(DBase.class, index);
+      session.delete(dBase);
+      transaction.commit();
+    } catch (HibernateException e)
+    {
+      transaction.rollback();
+      e.printStackTrace();
+
+    } finally
+    {
+      session.close();
+
+    }
   }
 }
