@@ -14,6 +14,10 @@ import com.vogel.rest.persistence.util.HibernateUtil;
 public class RetrieveEntry
 {
 
+  /**
+   * 
+   * @return
+   */
   public String getListOfEntries()
   {
     Session session = HibernateUtil.getSessionFactory().openSession();
@@ -59,14 +63,13 @@ public class RetrieveEntry
     try
     {
       transaction = session.beginTransaction();
-      List indexes = session.createQuery("from DBase").list();
-      for (Iterator iterator = indexes.iterator(); iterator.hasNext();)
+      DBase dBase = (DBase) session.get(DBase.class, index);
+      if (dBase != null)
       {
-        DBase dbase = (DBase) iterator.next();
-        name = dbase.getName();
-      }
-      transaction.commit();
+        name = dBase.getName();
 
+        transaction.commit();
+      }
     } catch (HibernateException e)
     {
       transaction.rollback();
@@ -116,11 +119,11 @@ public class RetrieveEntry
    * 
    */
   @Test
-  public void testThis()
+  public void shouldRetrieveCUrrentIndex()
   {
 
     long idx = getMyIndex();
-    System.out.println("This Test: " + idx);
+    System.out.println("Should Retrieve Current Index: " + idx);
 
   }
 }
