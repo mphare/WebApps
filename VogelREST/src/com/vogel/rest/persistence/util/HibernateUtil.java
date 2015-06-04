@@ -1,4 +1,4 @@
-package com.vogel.rest.persistence;
+package com.vogel.rest.persistence.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;

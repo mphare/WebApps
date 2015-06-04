@@ -50,12 +50,12 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20140107</version>
+			<version>${json-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.25</version>
+			<version>${mysql-conn-ver}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -89,5 +89,7 @@
 	<properties>
 		<jersey-version>1.19</jersey-version>
 		<asm-version>3.3.1</asm-version>
+		<json-version>20140107</json-version>
+		<mysql-conn-ver>5.1.25</mysql-conn-ver>
 	</properties>
 </project>

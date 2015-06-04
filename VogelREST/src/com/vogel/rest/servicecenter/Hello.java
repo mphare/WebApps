@@ -3,6 +3,7 @@ package com.vogel.rest.servicecenter;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -16,6 +17,19 @@ import com.vogel.rest.controller.RetrieveEntry;
 @Path("/hello")
 public class Hello
 {
+
+  /**
+   * 
+   * @param idx
+   * @return
+   */
+  @Path("arg")
+  @PUT
+  @Produces(MediaType.TEXT_PLAIN)
+  public String modifyTypeRS(@QueryParam("idx") Double idx)
+  {
+    return "Modify Type for (index): " + idx;
+  }
 
   /**
    * 
@@ -110,6 +124,7 @@ public class Hello
    * 
    * @return
    */
+  @Path("xml")
   @GET
   @Produces(MediaType.TEXT_XML)
   public String sayXMLHello()
@@ -117,14 +132,22 @@ public class Hello
     return "<?xml version=\"1.0\"?>" + "<hello> XML Hello from Jersey" + "</hello>";
   }
 
-  /*
-   * ======================================================= Use This One!
-   * -------------------------------------------------------
-   */
+  @Path("list")
+  @GET
+  @Produces(MediaType.TEXT_HTML)
+  public String getListofEntriesRS()
+  {
+    RetrieveEntry re = new RetrieveEntry();
+    String list = re.getListOfEntries();
+    return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "List of Entries" + "</h1>" + list
+        + "</body>" + "</html> ";
+  }
+
   /**
    * 
    * @return
    */
+  @Path("html")
   @GET
   @Produces(MediaType.TEXT_HTML)
   public String sayHtmlHello()

@@ -9,10 +9,47 @@ import org.hibernate.Transaction;
 import org.junit.Test;
 
 import com.vogel.rest.persistence.DBase;
-import com.vogel.rest.persistence.HibernateUtil;
+import com.vogel.rest.persistence.util.HibernateUtil;
 
 public class RetrieveEntry
 {
+
+  public String getListOfEntries()
+  {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = null;
+    String retString = null;
+
+    retString = "<table>";
+    retString += "<tr><th>Index</th><th>Name</th><th>Type</th></tr>";
+    try
+    {
+      transaction = session.beginTransaction();
+      List<DBase> dBases = session.createQuery("from DBase").list();
+
+      for (Iterator iterator = dBases.iterator(); iterator.hasNext();)
+      {
+        DBase dBase = (DBase) iterator.next();
+        retString += "<tr><td>" + dBase.getIndex() + "</td><td>" + dBase.getName() + "</td><td>" + dBase.getType()
+            + "</td></tr>";
+      }
+    } catch (HibernateException e)
+    {
+      transaction.rollback();
+      e.printStackTrace();
+    } finally
+    {
+      session.close();
+    }
+    retString += "</table>";
+    return retString;
+  }
+
+  /**
+   * 
+   * @param index
+   * @return
+   */
   public String getNameByIndex(long index)
   {
     Session session = HibernateUtil.getSessionFactory().openSession();
@@ -43,6 +80,10 @@ public class RetrieveEntry
     return name;
   }
 
+  /**
+   * 
+   * @return
+   */
   public long getMyIndex()
   {
     Session session = HibernateUtil.getSessionFactory().openSession();
@@ -71,6 +112,9 @@ public class RetrieveEntry
     return retValue;
   }
 
+  /**
+   * 
+   */
   @Test
   public void testThis()
   {

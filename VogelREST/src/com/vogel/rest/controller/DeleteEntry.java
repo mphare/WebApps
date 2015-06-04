@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.vogel.rest.persistence.DBase;
-import com.vogel.rest.persistence.HibernateUtil;
+import com.vogel.rest.persistence.util.HibernateUtil;
 
 public class DeleteEntry
 {
