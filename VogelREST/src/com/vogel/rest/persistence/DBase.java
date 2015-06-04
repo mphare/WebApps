@@ -1,4 +1,4 @@
-package com.vogel.rest;
+package com.vogel.rest.persistence;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
