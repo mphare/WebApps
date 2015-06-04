@@ -10,12 +10,13 @@ import com.vogel.rest.persistence.util.HibernateUtil;
 
 public class DeleteEntry
 {
+
   /**
    * === D ===
    * 
    * @param courseId
    */
-  public long deleteIndex(long index)
+  public Long deleteIndex(Long index)
   {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = null;
@@ -24,12 +25,8 @@ public class DeleteEntry
     {
       transaction = session.beginTransaction();
       DBase dBase = (DBase) session.get(DBase.class, 1L);
-      if (dBase != null)
-      {
-        String name = dBase.getName();
-        session.delete(dBase);
-        transaction.commit();
-      }
+      session.delete(dBase);
+      transaction.commit();
     } catch (HibernateException e)
     {
       transaction.rollback();
@@ -50,8 +47,7 @@ public class DeleteEntry
   public void shouldDeleteEntry()
   {
 
-    long idx = deleteIndex(1);
-    ;
+    Long idx = deleteIndex(1L);
     System.out.println("Should Delete Entry (index): " + idx);
 
   }
