@@ -24,7 +24,7 @@ public class DeleteEntry
     try
     {
       transaction = session.beginTransaction();
-      DBase dBase = (DBase) session.get(DBase.class, 1L);
+      DBase dBase = (DBase) session.get(DBase.class, index);
       session.delete(dBase);
       transaction.commit();
     } catch (HibernateException e)
