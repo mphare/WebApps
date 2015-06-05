@@ -22,7 +22,7 @@ public class DBase
 
   @Id
   @GeneratedValue
-  @Column(name = "INDEX")
+  @Column(name = "ENTRY_ID")
   public long getIndex()
   {
     return index;

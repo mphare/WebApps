@@ -33,6 +33,10 @@ local.properties
 # PDT specific
 .buildpath
 
+# Log Files
+*.log
+*.log.*
+
 # -----------------
 # IntelliJ
 # -----------------
