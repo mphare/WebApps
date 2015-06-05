@@ -39,7 +39,7 @@ public class Hello
   @Path("arg")
   @DELETE
   @Produces(MediaType.TEXT_PLAIN)
-  public String deleteIndexRS(@QueryParam("idx") Double idx)
+  public String deleteIndexRS(@QueryParam("idx") long idx)
   {
     DeleteEntry de = new DeleteEntry();
     de.deleteIndex(idx);
@@ -104,9 +104,11 @@ public class Hello
   @Path("arg")
   @GET
   @Produces(MediaType.TEXT_PLAIN)
-  public String sayPlainTextHelloWithArg(@QueryParam("c") Double c)
+  public String sayPlainTextHelloWithArgRS(@QueryParam("idx") long idx)
   {
-    return "Plain Text Hello from Jersey with Argument: C: " + c;
+    RetrieveEntry re = new RetrieveEntry();
+    String name = re.getNameByIndex(idx);
+    return "Index: " + idx + " Name: " + name;
   }
 
   /**
