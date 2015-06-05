@@ -25,8 +25,11 @@ public class DeleteEntry
     {
       transaction = session.beginTransaction();
       DBase dBase = (DBase) session.get(DBase.class, index);
-      session.delete(dBase);
-      transaction.commit();
+      if (dBase != null)
+      {
+        session.delete(dBase);
+        transaction.commit();
+      }
     } catch (HibernateException e)
     {
       transaction.rollback();
