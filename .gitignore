@@ -34,6 +34,17 @@ local.properties
 .buildpath
 
 # -----------------
+# IntelliJ
+# -----------------
+.idea_modules/
+.settings/
+.gradle/
+logs/
+.idea/
+*.iml
+*.apk
+
+# -----------------
 # Java
 # -----------------
 *.class
