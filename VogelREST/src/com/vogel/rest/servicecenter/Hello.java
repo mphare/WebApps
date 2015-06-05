@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import com.vogel.rest.controller.CreateEntry;
 import com.vogel.rest.controller.DeleteEntry;
 import com.vogel.rest.controller.RetrieveEntry;
+import com.vogel.rest.controller.UpdateEntry;
 
 @Path("/hello")
 public class Hello
@@ -26,9 +27,12 @@ public class Hello
   @Path("arg")
   @PUT
   @Produces(MediaType.TEXT_PLAIN)
-  public String modifyTypeRS(@QueryParam("idx") Double idx)
+  public String modifyNameTypeRS(@QueryParam("idx") Long idx, @QueryParam("name") String name,
+      @QueryParam("type") String type)
   {
-    return "Modify Type for (index): " + idx;
+    UpdateEntry ue = new UpdateEntry();
+    ue.updateNameType(idx, name, type);
+    return "Modify Name, Type for (index): " + idx;
   }
 
   /**
