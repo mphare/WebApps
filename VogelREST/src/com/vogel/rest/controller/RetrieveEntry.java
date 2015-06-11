@@ -14,6 +14,54 @@ import com.vogel.rest.persistence.util.HibernateUtil;
 public class RetrieveEntry
 {
 
+  public DBase getByIndex(long index)
+  {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = null;
+    String name = null;
+    DBase dBase = null;
+    try
+    {
+      transaction = session.beginTransaction();
+      dBase = (DBase) session.get(DBase.class, index);
+    } catch (HibernateException e)
+    {
+      transaction.rollback();
+      e.printStackTrace();
+
+    } finally
+    {
+      session.close();
+    }
+
+    return dBase;
+  }
+
+  /**
+   * 
+   * @return
+   */
+  public List<DBase> getEntries()
+  {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = null;
+    List<DBase> dBases = null;
+    try
+    {
+      transaction = session.beginTransaction();
+      dBases = session.createQuery("from DBase").list();
+
+    } catch (HibernateException e)
+    {
+      transaction.rollback();
+      e.printStackTrace();
+    } finally
+    {
+      session.close();
+    }
+    return dBases;
+  }
+
   /**
    * 
    * @return
