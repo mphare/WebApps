@@ -1,4 +1,6 @@
-package com.vogel.rest.servicecenter;
+package com.vogel.rest.servicecenter.hello;
+
+import java.util.List;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -14,6 +16,7 @@ import com.vogel.rest.controller.CreateEntry;
 import com.vogel.rest.controller.DeleteEntry;
 import com.vogel.rest.controller.RetrieveEntry;
 import com.vogel.rest.controller.UpdateEntry;
+import com.vogel.rest.persistence.DBase;
 
 @Path("/hello")
 public class Hello
@@ -113,6 +116,35 @@ public class Hello
     RetrieveEntry re = new RetrieveEntry();
     String name = re.getNameByIndex(idx);
     return "Index: " + idx + " Name: " + name;
+  }
+
+  /**
+   * 
+   * @param idx
+   * @return
+   */
+  @Path("entry")
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public DBase getJSonHelloWithArgRS(@QueryParam("idx") long idx)
+  {
+    RetrieveEntry re = new RetrieveEntry();
+    DBase dBase = re.getByIndex(idx);
+    return dBase;
+  }
+
+  /**
+   * 
+   * @return
+   */
+  @Path("entries")
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<DBase> getJSonEntriesRS()
+  {
+    RetrieveEntry re = new RetrieveEntry();
+    List<DBase> dBases = re.getEntries();
+    return dBases;
   }
 
   /**
