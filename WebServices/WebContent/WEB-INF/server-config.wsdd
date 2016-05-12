@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -20,8 +20,8 @@
   </ns1:requestFlow>
  </ns1:globalConfiguration>
  <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
- <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:service name="CrunchifyHelloWorld" provider="java:RPC" style="wrapped" use="literal">
   <ns2:operation name="addValue" qname="ns1:addValue" returnQName="ns1:addValueReturn" returnType="xsd:float" soapAction="" xmlns:ns1="http://service.web.com.crunchify" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
    <ns2:parameter qname="ns1:value" type="xsd:float"/>
@@ -29,7 +29,7 @@
   <ns1:operation name="subtractValue" qname="ns2:subtractValue" returnQName="ns2:subtractValueReturn" returnType="xsd:float" soapAction="" xmlns:ns2="http://service.web.com.crunchify" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns2:value" type="xsd:float"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="addValue subtractValue"/>
+  <ns1:parameter name="allowedMethods" value="subtractValue addValue"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="CrunchifyHelloWorld"/>
   <ns1:parameter name="className" value="crunchify.com.web.service.CrunchifyHelloWorld"/>

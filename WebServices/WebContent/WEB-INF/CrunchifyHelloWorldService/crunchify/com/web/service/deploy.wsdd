@@ -16,7 +16,7 @@
       <operation xmlns:operNS="http://service.web.com.crunchify" xmlns:retNS="http://service.web.com.crunchify" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="subtractValue" qname="operNS:subtractValue" returnQName="retNS:subtractValueReturn" returnType="rtns:float" soapAction="">
         <parameter xmlns:pns="http://service.web.com.crunchify" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:float"/>
       </operation>
-      <parameter name="allowedMethods" value="addValue subtractValue"/>
+      <parameter name="allowedMethods" value="subtractValue addValue"/>
 
   </service>
 </deployment>
