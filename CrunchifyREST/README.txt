@@ -1,10 +1,12 @@
+Convert Celsius to Fahrenheit
 
+Where the tutorial is
+---------------------
 Crunchify REST Example
 http://crunchify.com/how-to-build-restful-service-with-java-using-jax-rs-and-jersey/
 
-
-Celsius to Fahrenheit
-
+Run it
+------
   Use this URL to test:
     http://localhost:8080/CrunchifyREST/crunchify/ctofservice
     http://localhost:8080/CrunchifyREST/crunchify/ctofservice/<celsius>

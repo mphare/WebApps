@@ -1,5 +1,12 @@
-Tutorial:
+Where the tutorial is
+---------------------
 http://www.vogella.com/tutorials/REST/article.html#first
+
+Run it
+------
+Note: These endpoints do not make database calls
+
+Note: These endpoints return Plain Text
 
 Use this url to test (it is different than what the tutorial calls for):
 http://localhost:8080/VogelREST/rest/hello
@@ -8,11 +15,35 @@ http://localhost:8080/VogelREST/rest/hello
 -  'rest' is defined in the web.xml as <url-pattern>
 -  'hello' is defined in the class and the @Path
 
-In web.xml, the
+http://localhost:8080/VogelREST/rest/hello/500
+ - 500 can be any 'double' value
 
-There are multiple responders for the GET /hello url. 1 for plain text, 1 for XML and 1 for HTML
-A browser will ask for HTML by default, so we get the 'HTML Hello from Jersey' response
-If the HTML response is not present (or commented out as a test) then the 
-plain text response is delivered to the browser
+http://localhost:8080/VogelREST/rest/hello/arg?idx=250
+ - 250 can be any 'double' value
 
-!! Use Postman to send various requests to the web app
+Note: This endpoint returns XML
+
+http://localhost:8080/VogelREST/rest/hello/xml
+
+Note: This endpoint returns HTML
+
+http://localhost:8080/VogelREST/rest/hello/html
+
+Note: Remove the @Path directive from the code and the 'html' from the end of the url
+Make the call with a browser and you will get the HTML response anyway
+
+
+What it is
+----------
+Basically, I took the REST tutorial from Vogella and combined it with a tutorial for hibernate from DZone
+The result is using RESTful CRUD to access a MySQL database
+
+Note: This means you must have the MySQL database with the correct schema running in order for this tutorial to work
+
+
+Concepts
+--------
+REST with JAX-RS and Jersey
+MySQL and Hibernate
+Use Maven to install libraries such as Jersey and JDBC
+

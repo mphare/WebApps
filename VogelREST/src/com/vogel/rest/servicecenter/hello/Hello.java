@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+
 import com.vogel.rest.controller.CreateEntry;
 import com.vogel.rest.controller.DeleteEntry;
 import com.vogel.rest.controller.RetrieveEntry;
@@ -101,6 +102,22 @@ public class Hello
   }
 
   /*
+   * http://localhost:8080/VogelREST/rest/hello/test?idx=<c>
+   */
+  /**
+   * 
+   * @param idx
+   * @return
+   */
+  @Path("test")
+  @GET
+  @Produces(MediaType.TEXT_PLAIN)
+  public String sayPlainTextHelloWithArgRS(@QueryParam("idx") long idx)
+  {
+    return "Index: " + idx;
+  }
+
+  /*
    * http://localhost:8080/VogelREST/rest/hello/arg?c=<c>
    */
   /**
@@ -111,7 +128,7 @@ public class Hello
   @Path("arg")
   @GET
   @Produces(MediaType.TEXT_PLAIN)
-  public String sayPlainTextHelloWithArgRS(@QueryParam("idx") long idx)
+  public String getPlainTextHelloWithArgRS(@QueryParam("idx") long idx)
   {
     RetrieveEntry re = new RetrieveEntry();
     String name = re.getNameByIndex(idx);
@@ -159,6 +176,7 @@ public class Hello
   }
 
   /**
+   * http://localhost:8080/VogelREST/rest/hello/xml
    * 
    * @return
    */
@@ -185,10 +203,10 @@ public class Hello
    * 
    * @return
    */
-  @Path("html")
+  @Path("htmlx")
   @GET
   @Produces(MediaType.TEXT_HTML)
-  public String sayHtmlHello()
+  public String getHtmlHello()
   {
 
     RetrieveEntry re = new RetrieveEntry();
@@ -196,5 +214,25 @@ public class Hello
     return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "HTML Hello from Jersey (index: " + idx
         + ")" + "</h1></body>" + "</html> ";
   }
+
+  /**
+   * http://localhost:8080/VogelREST/rest/hello/html
+   * 
+   * @return
+   */
+  @Path("html")
+  @GET
+  @Produces(MediaType.TEXT_HTML)
+  public String sayHtmlHello()
+  {
+
+    return "<html> " + "<title>" + "Hello Jersey" + "</title>" + "<body><h1>" + "HTML Hello from Jersey" + "</h1></body>" + "</html> ";
+  }
+  /**
+   * http://localhost:8080/VogelREST/rest/hello/html
+   * 
+   * @return
+   */
+
 
 }
