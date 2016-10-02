@@ -32,6 +32,25 @@ http://localhost:8080/VogelREST/rest/hello/html
 Note: Remove the @Path directive from the code and the 'html' from the end of the url
 Make the call with a browser and you will get the HTML response anyway
 
+Updating the Database using REST endpoints
+I use Postman to test these calls
+
+Get the values at a row at an index
+http://localhost:8080/VogelREST/rest/hello/arg?idx=14
+
+Get a list of all rows, using XML
+http://localhost:8080/VogelREST/rest/hello/list
+
+Modify a row at an index
+http://localhost:8080/VogelREST/rest/hello/arg?name=X Hadron&type=Urner&idx=2
+
+Delete a row at an index
+http://localhost:8080/VogelREST/rest/hello/arg?idx=3
+
+Create a new row in the database
+http://localhost:8080/VogelREST/rest/hello/arg?name=J Taylor&type=Dragon
+
+
 
 What it is
 ----------
