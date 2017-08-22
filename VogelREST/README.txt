@@ -66,3 +66,4 @@ REST with JAX-RS and Jersey
 MySQL and Hibernate
 Use Maven to install libraries such as Jersey and JDBC
 
+
