@@ -64,12 +64,12 @@ public class Hello
   @Path("add")
   @PUT
   @Produces(MediaType.TEXT_PLAIN)
-  public String addNameTypeRS(@QueryParam("name") String name, @QueryParam("type") String type)
+  public String addNameTypeRS(@QueryParam("name") String nameParam, @QueryParam("type") String typeParam)
   {
 
     CreateEntry cne = new CreateEntry();
-    Long idx = cne.saveNameType(name, type);
-    return "Added new Name: " + name + " Type: " + type + " index: " + idx;
+    Long idx = cne.saveNameType(nameParam, typeParam);
+    return "Added new Name: " + nameParam + " Type: " + typeParam + " index: " + idx;
   }
 
   /**
@@ -78,7 +78,7 @@ public class Hello
    * @param type
    * @return
    */
-  @Path("add")
+  @Path("addpost")
   @POST
   @Produces(MediaType.TEXT_PLAIN)
   public String saveNameTypeRS(@QueryParam("name") String name, @QueryParam("type") String type)
