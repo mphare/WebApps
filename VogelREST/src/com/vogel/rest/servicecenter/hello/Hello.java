@@ -2,6 +2,7 @@ package com.vogel.rest.servicecenter.hello;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -60,7 +61,24 @@ public class Hello
    * @param type
    * @return
    */
-  @Path("arg")
+  @Path("add")
+  @PUT
+  @Produces(MediaType.TEXT_PLAIN)
+  public String addNameTypeRS(@QueryParam("name") String name, @QueryParam("type") String type)
+  {
+
+    CreateEntry cne = new CreateEntry();
+    Long idx = cne.saveNameType(name, type);
+    return "Added new Name: " + name + " Type: " + type + " index: " + idx;
+  }
+
+  /**
+   * 
+   * @param name
+   * @param type
+   * @return
+   */
+  @Path("add")
   @POST
   @Produces(MediaType.TEXT_PLAIN)
   public String saveNameTypeRS(@QueryParam("name") String name, @QueryParam("type") String type)
